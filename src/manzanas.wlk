@@ -28,8 +28,8 @@ class Manzana {
 	}
 	
 	method cantidadContagiadores() {
-		return 0
-		// reemplazar por la cantidad de personas infectadas que no estan aisladas
+		return  personas.count({p=>p.estaInfectada() and not p.estaAislada()})
+		//TERMINADO
 	}
 	
 	method noInfectades() {
@@ -55,4 +55,10 @@ class Manzana {
 			self.personaSeMudaA(viajero, destino)			
 		}
 	}
+	// ESTE LO CREE YO
+	method personasInfectadas(){
+		return personas.count({p=>p.estaInfectada()})
+	}
+
+	
 }

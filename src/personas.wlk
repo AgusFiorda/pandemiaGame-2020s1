@@ -9,5 +9,8 @@ class Persona {
 	method infectarse() {
 		// implementar 
 	}
+	
+	
+	
 }
 
