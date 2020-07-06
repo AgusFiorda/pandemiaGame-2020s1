@@ -6,6 +6,7 @@ object simulacion {
 	const property manzanas = []
 	
 	// parametros del juego
+	
 	const property chanceDePresentarSintomas = 30
 	const property chanceDeContagioSinCuarentena = 25
 	const property chanceDeContagioConCuarentena = 2
