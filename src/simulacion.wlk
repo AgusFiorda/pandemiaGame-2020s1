@@ -32,7 +32,11 @@ object simulacion {
 
 	method crearManzana() {
 		const nuevaManzana = new Manzana()
-		// agregar la cantidad de personas segun self.personasPorManzana()
+		
+		//se agregan 10 personas a la manzana. 
+		(1..self.personasPorManzana()).forEach({x=>nuevaManzana.agregarPersona(new Persona())})
+		
+		//(comentario del profe) agregar la cantidad de personas segun self.personasPorManzana()
 		return nuevaManzana
 	}
 }

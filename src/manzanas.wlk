@@ -60,5 +60,7 @@ class Manzana {
 		return personas.count({p=>p.estaInfectada()})
 	}
 
-	
+	method agregarPersona(persona){
+		personas.add(persona)
+	}
 }
