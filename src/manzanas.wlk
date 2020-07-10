@@ -25,6 +25,8 @@ class Manzana {
 	
 	method personaSeMudaA(persona, manzanaDestino) {
 		// implementar
+		manzanaDestino.agregarPersona(persona)
+			
 	}
 	
 	method cantidadContagiadores() {
@@ -60,5 +62,12 @@ class Manzana {
 		return personas.count({p=>p.estaInfectada()})
 	}
 
+	method agregarPersona(persona){
+		personas.add(persona)
+	}
+	method GenteViviendo(){
+		return self.personas().size()
+	}
 	
+		
 }
