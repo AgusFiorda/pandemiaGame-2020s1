@@ -19,7 +19,7 @@ test "testX" {
 	manzana1.agregarPersona(per5)
 	
 	
-	assert.equals(5,manzana1.GenteViviendo())
+	assert.equals(5,manzana1.genteViviendo())
 	assert.equals(3,manzana1.personasInfectadas())
 	assert.equals(1,manzana1.cantidadContagiadores()) //per1
 	assert.that(true)

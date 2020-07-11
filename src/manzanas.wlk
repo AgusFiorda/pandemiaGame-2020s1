@@ -61,11 +61,15 @@ class Manzana {
 	method personasInfectadas(){
 		return personas.count({p=>p.estaInfectada()})
 	}
+	
+	method personasInfectadasNoAisladas() {
+		return personas.filter({ p => p.estaInfectada() }).filter({ p => p.estaAislada() }).size()
+	}
 
 	method agregarPersona(persona){
 		personas.add(persona)
 	}
-	method GenteViviendo(){
+	method genteViviendo(){
 		return self.personas().size()
 	}
 	
