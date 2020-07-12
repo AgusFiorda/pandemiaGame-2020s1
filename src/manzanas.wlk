@@ -25,6 +25,7 @@ class Manzana {
 	
 	method personaSeMudaA(persona, manzanaDestino) {
 		// implementar
+		personas.remove(persona)
 		manzanaDestino.agregarPersona(persona)
 			
 	}
@@ -72,6 +73,7 @@ class Manzana {
 	method genteViviendo(){
 		return self.personas().size()
 	}
+	
 	
 		
 }
