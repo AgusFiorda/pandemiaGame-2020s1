@@ -60,13 +60,13 @@ object simulacion {
         return manzanas.sum({unaManzana => unaManzana.genteViviendo()})
 
     }
-   /*  method totalConSintomas(){
+     method totalConSintomas(){
         return manzanas.sum({unaManzana => unaManzana.cantidadDePersonasConSintomas()})
     }
-*/
+
     method estadoGeneral() {
     	
-         console.println("Día "+diaActual+", total de personas: "+self.totalDePersonas()+", infectados: "+self.totalDeInfectos()+", con síntomas "/* +self.totalConSintomas()*/)
+         console.println("Día "+diaActual+", total de personas: "+self.totalDePersonas()+", infectados: "+self.totalDeInfectos()+", con síntomas " +self.totalConSintomas())
      }
      method acciones(){
      	keyboard.e().onPressDo({self.estadoGeneral()})
