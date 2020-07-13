@@ -7,7 +7,7 @@ class Persona {
 	var property diaDeInfeccion = -1
 	var property presentaSintomas = false
 	var property estaInfectada = self.diaDeInfeccion()>-1
-	const property manzana
+	var property manzana
 	/*method estaInfectada() {		
 		return diaDeInfeccion > -1
 	}*/
@@ -30,6 +30,7 @@ method infectarse() {
 		
 		if((simulacion.diaActual()-self.diaDeInfeccion()) >=20){
 			self.diaDeInfeccion(0)
+			self.presentaSintomas(false)
 		}
 	}
 	

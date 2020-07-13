@@ -11,7 +11,10 @@ object pandemiaGameConfig {
 		self.configureGameParameters()
 		self.agregarManzanas()
 		agenteDeSalud.agregarAgente()
-		agenteDeSalud.moverAgente() 
+		agenteDeSalud.moverAgente()
+		
+		simulacion.acciones()
+		
 		game.whenCollideDo(agenteDeSalud, { elemento => 
         agenteDeSalud.memoriaManzana(elemento)
         game.say(agenteDeSalud,agenteDeSalud.mensaje())    })

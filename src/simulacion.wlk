@@ -1,6 +1,6 @@
 import personas.*
 import manzanas.*
-
+import wollok.game.*
 object simulacion {
 	var property diaActual = 0
 	const property manzanas = []
@@ -42,6 +42,38 @@ object simulacion {
 	method pasaUnDia() {
         manzanas.forEach( { m => m.pasarUnDia() } )
         diaActual += 1
+		console.println("terminó el día")
+    }
+    
+	method agregarPersonaInfectada() {
+        const manzanaDestino = manzanas.anyOne()
+        const personaInfectada = new Persona()
+
+        personaInfectada.manzana(manzanaDestino)
+        personaInfectada.infectarse()
+        manzanaDestino.agregarPersona(personaInfectada)
+    }
+    method totalDeInfectos(){
+        return manzanas.sum({unaManzana => unaManzana.personasInfectadas()})
+    }
+    method totalDePersonas(){
+        return manzanas.sum({unaManzana => unaManzana.genteViviendo()})
 
     }
+   /*  method totalConSintomas(){
+        return manzanas.sum({unaManzana => unaManzana.cantidadDePersonasConSintomas()})
+    }
+*/
+    method estadoGeneral() {
+    	
+         console.println("Día "+diaActual+", total de personas: "+self.totalDePersonas()+", infectados: "+self.totalDeInfectos()+", con síntomas "/* +self.totalConSintomas()*/)
+     }
+     method acciones(){
+     	keyboard.e().onPressDo({self.estadoGeneral()})
+     	keyboard.o().onPressDo({self.pasaUnDia()})
+     	keyboard.y().onPressDo({self.agregarPersonaInfectada()})
+     }
+    
+     
+    
 }
