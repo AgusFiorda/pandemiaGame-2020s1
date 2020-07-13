@@ -95,6 +95,9 @@ class Manzana {
 	method manzanaActual(){
 		return self
 	}
+	method cantidadDePersonasConSintomas(){
+		return personas.count({p=>p.presentaSintomas()})
+	}
 	
 	
 		
