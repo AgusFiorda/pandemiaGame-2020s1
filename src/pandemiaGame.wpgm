@@ -12,9 +12,7 @@ object pandemiaGameConfig {
 		self.agregarManzanas()
 		agenteDeSalud.agregarAgente()
 		agenteDeSalud.moverAgente()
-		
 		simulacion.acciones()
-		
 		game.whenCollideDo(agenteDeSalud, { elemento => 
         agenteDeSalud.memoriaManzana(elemento)
         game.say(agenteDeSalud,agenteDeSalud.mensaje())    })
@@ -44,7 +42,7 @@ object pandemiaGameConfig {
 
 program pandemiaGame {
 	pandemiaGameConfig.configureGame()
-//	game.addVisual(agenteDeSalud)
+
 	game.start()
 }
 

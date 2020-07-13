@@ -13,6 +13,8 @@ object agenteDeSalud {
 	        keyboard.right().onPressDo({self. moverseHacia(self.position().right(1))})
 	        keyboard.left().onPressDo({self. moverseHacia(self.position().left(1))})
 	       
+	       	keyboard.x().onPressDo({self.aislar()})
+   			keyboard.z().onPressDo({self.respetenCuarentena()})
 		}
 		method  moverseHacia(direccion){
         position = direccion
@@ -20,11 +22,7 @@ object agenteDeSalud {
    	method agregarAgente(){
    		game.addVisual(self)
    	}
-   	method acciones(){
-   		
-   		
-   		
-   	}
+ 
    	method mensaje() { return "Presione Z para hacer respetar la cuarentena o X para Aislar"}
 
 //faltan hacer estos dos metodos !
