@@ -4,12 +4,13 @@ import simulacion.*
 class Persona {
 	var property estaAislada = false
 	var property respetaLaCuarentena = false
-	var property diaDeInfeccion = 0
+	var property diaDeInfeccion = -1
 	var property presentaSintomas = false
-
-	method estaInfectada() {		
-		return diaDeInfeccion > 0
-	}
+	var property estaInfectada = self.diaDeInfeccion()>-1
+	var property manzana
+	/*method estaInfectada() {		
+		return diaDeInfeccion > -1
+	}*/
 	
 	method diaYSintomas() {
 		if (self.estaInfectada())
@@ -18,9 +19,19 @@ class Persona {
 		else return "La persona no esta infectada"
 	}
 	
-	method infectarse(simul) {
-		diaDeInfeccion = simul.diaActual()
+	
+method infectarse() {
+       estaInfectada= true
+        diaDeInfeccion = simulacion.diaActual()
+        if ( simulacion.tomarChance(30) ) { presentaSintomas = true }
+
+    }
+	method curacion(){
 		
+		if((simulacion.diaActual()-self.diaDeInfeccion()) >=20){
+			self.diaDeInfeccion(0)
+			self.presentaSintomas(false)
+		}
 	}
 	
 	
