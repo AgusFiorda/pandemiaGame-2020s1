@@ -1,6 +1,7 @@
 import wollok.game.*
 import simulacion.*
 import agentedesalud.*
+import manzanas.*
 object pandemiaGameConfig {
 	method height() = 4
 	method width() = 6
@@ -9,7 +10,12 @@ object pandemiaGameConfig {
 	method configureGame() {
 		self.configureGameParameters()
 		self.agregarManzanas()
-		agentedesalud.moverAgente()
+		agenteDeSalud.agregarAgente()
+		agenteDeSalud.moverAgente() 
+		game.whenCollideDo(agenteDeSalud, { elemento => 
+        agenteDeSalud.memoriaManzana(elemento)
+        game.say(agenteDeSalud,agenteDeSalud.mensaje())    })
+			
 		// agregar las teclas de acciones
 		// después, al agente de salud y sus teclas de acciones y movimiento
 	}
@@ -35,6 +41,7 @@ object pandemiaGameConfig {
 
 program pandemiaGame {
 	pandemiaGameConfig.configureGame()
+//	game.addVisual(agenteDeSalud)
 	game.start()
 }
 

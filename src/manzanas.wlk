@@ -7,9 +7,24 @@ class Manzana {
 	var property position
 	
 	method image() {
+		if(personas.all({p=>p.estaInfectada()})){
+			return "rojo.png"
+		}
+		if(self.personasInfectadas()>7 ){
+			if(self.personasInfectadas()<self.genteViviendo()){
+				return "naranjaOscuro.png"
+			}
+		}
+		if(self.personasInfectadas().between(4,7)){
+			return "naranja.png"
+		}
+		if(self.personasInfectadas().between(1,3)){
+			return "amarillo.png"
+		}
+		return "blanco.png"
 		// reeemplazarlo por los distintos colores de acuerdo a la cantidad de infectados
 		// también vale reemplazar estos dibujos horribles por otros más lindos
-		return "blanco.png"
+		
 	}
 	
 	// este les va a servir para el movimiento
@@ -20,6 +35,9 @@ class Manzana {
 	method pasarUnDia() {
 		self.transladoDeUnHabitante()
 		self.simulacionContagiosDiarios()
+		personas.forEach({
+			p=>p.curacion()
+		})	
 		// despues agregar la curacion
 	}
 	
@@ -72,6 +90,10 @@ class Manzana {
 	}
 	method genteViviendo(){
 		return self.personas().size()
+	}
+	
+	method manzanaActual(){
+		return self
 	}
 	
 	

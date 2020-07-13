@@ -3,8 +3,9 @@ import manzanas.*
 import personas.*
 import simulacion.*
 object agenteDeSalud {
-	var property image 
+	var property image = "agente.png"
     var property position = game.origin()
+    var property memoriaManzana=0
    	
 	method moverAgente(){
 	        keyboard.up().onPressDo({self. moverseHacia(self.position().up(1))})
@@ -15,10 +16,24 @@ object agenteDeSalud {
 		method  moverseHacia(direccion){
         position = direccion
     }		
-    method aislar(){
-    	
-    		Manzana.personas.filter({p=>p.presentaSintomas()}).forEach({p=>p.estaAislada(true)})
+   	method agregarAgente(){
+   		game.addVisual(self)
+   		//keyboard.p().onPressDo({
+   		//	game.addVisual(self)
+   		//})
+   	}
+   	method mensaje() { return "Presione Z para hacer respetar la cuarentena o X para Aislar"}
+
+//faltan hacer estos dos metodos !
+	    method aislar(){
     		
+    		manzana.personas.filter({p=>p.presentaSintomas()}).forEach({p=>p.estaAislada(true)})
+    		
+    }*/
+    method respetenCuarentena(){
+    	Manzana.personas.forEach({
+    		p=>p.respetaLaCuarentena(true)
+    	})
     }
     
     
