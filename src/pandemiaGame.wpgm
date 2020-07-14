@@ -2,6 +2,7 @@ import wollok.game.*
 import simulacion.*
 import agentedesalud.*
 import manzanas.*
+
 object pandemiaGameConfig {
 	method height() = 4
 	method width() = 6
@@ -10,15 +11,18 @@ object pandemiaGameConfig {
 	method configureGame() {
 		self.configureGameParameters()
 		self.agregarManzanas()
-		agenteDeSalud.agregarAgente()
-		agenteDeSalud.moverAgente()
+		keyboard.enter().onPressDo({ agenteDeSalud.agregarAgente()
+			console.println("El Agente de salud vino para salvar a tu ciudad, puedes moverlo con las flechas y presionar Z = pone cuarentena o X = Aislar, si te olvidas, toca H ")
+			agenteDeSalud.moverAgente()
+			game.whenCollideDo(agenteDeSalud, { elemento => 
+		        agenteDeSalud.memoriaManzana(elemento)
+		        game.say(agenteDeSalud,agenteDeSalud.mensaje())    })
+		})
+		keyboard.a().onPressDo({ console.println("Puede consultar el estado de la ciuad con la tecla E, sumar una persona infectada en una manzana al azar con la Y, pasar un dia con la telca O, ENTER para agregar el agente.") })
 		simulacion.acciones()
-		game.whenCollideDo(agenteDeSalud, { elemento => 
-        agenteDeSalud.memoriaManzana(elemento)
-        game.say(agenteDeSalud,agenteDeSalud.mensaje())    })
-			
-		// agregar las teclas de acciones
-		// después, al agente de salud y sus teclas de acciones y movimiento
+		console.println("Bienvenido al PANDEMIA GAME, vas a poder simular tu propia pandemia y luchar contra ella como un agente de salud! , consulta los comandos con la tecla A y comienza ya mismo")
+		
+		keyboard.h().onPressDo({ console.println("Con la Z pones en cuarentena a las personas de la manzana, con X aislas a los que tengan sintomas, ha y con las flechitas te moves")})
 	}
 		
 	method configureGameParameters() {
@@ -42,7 +46,5 @@ object pandemiaGameConfig {
 
 program pandemiaGame {
 	pandemiaGameConfig.configureGame()
-
 	game.start()
 }
-

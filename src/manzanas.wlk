@@ -1,33 +1,22 @@
 import personas.*
 import simulacion.*
 import wollok.game.*
+import agentedesalud.*
 
 class Manzana {
 	const property personas = []
 	var property position
 	
 	method image() {
-		if(personas.all({p=>p.estaInfectada()})){
-			return "rojo.png"
-		}
+		if(personas.all({p=>p.estaInfectada()})){ return "rojo.png"	}
 		if(self.personasInfectadas()>7 ){
-			if(self.personasInfectadas()<self.genteViviendo()){
-				return "naranjaOscuro.png"
-			}
+			if(self.personasInfectadas()<self.genteViviendo()) {	return "naranjaOscuro.png"	}
 		}
-		if(self.personasInfectadas().between(4,7)){
-			return "naranja.png"
-		}
-		if(self.personasInfectadas().between(1,3)){
-			return "amarillo.png"
-		}
+		if(self.personasInfectadas().between(4,7)){	return "naranja.png" }
+		if(self.personasInfectadas().between(1,3)){	return "amarillo.png" }
 		return "blanco.png"
-		// reeemplazarlo por los distintos colores de acuerdo a la cantidad de infectados
-		// también vale reemplazar estos dibujos horribles por otros más lindos
-		
 	}
 	
-	// este les va a servir para el movimiento
 	method esManzanaVecina(manzana) {
 		return manzana.position().distance(position) == 1
 	}
@@ -35,22 +24,16 @@ class Manzana {
 	method pasarUnDia() {
 		self.transladoDeUnHabitante()
 		self.simulacionContagiosDiarios()
-		personas.forEach({
-			p=>p.curacion()
-		})	
-		// despues agregar la curacion
+		personas.forEach({ p => p.curacion() })	
 	}
 	
 	method personaSeMudaA(persona, manzanaDestino) {
-		// implementar
 		personas.remove(persona)
 		manzanaDestino.agregarPersona(persona)
-			
 	}
 	
 	method cantidadContagiadores() {
-		return  personas.count({p=>p.estaInfectada() and not p.estaAislada()})
-		//TERMINADO
+		return  personas.count({ p => p.estaInfectada() and not p.estaAislada() })
 	}
 	
 	method noInfectades() {
@@ -76,29 +59,18 @@ class Manzana {
 			self.personaSeMudaA(viajero, destino)			
 		}
 	}
-	// ESTE LO CREE YO
-	method personasInfectadas(){
-		return personas.count({p=>p.estaInfectada()})
-	}
+	
+	method personasInfectadas() { return personas.count({ p=> p.estaInfectada()}) }
 	
 	method personasInfectadasNoAisladas() {
 		return personas.filter({ p => p.estaInfectada() }).filter({ p => p.estaAislada() }).size()
 	}
 
-	method agregarPersona(persona){
-		personas.add(persona)
-	}
-	method genteViviendo(){
-		return self.personas().size()
-	}
+	method agregarPersona(persona) { personas.add(persona) }
 	
-	method manzanaActual(){
-		return self
-	}
-	method cantidadDePersonasConSintomas(){
-		return personas.count({p=>p.presentaSintomas()})
-	}
+	method genteViviendo() { return self.personas().size() }
 	
+	method manzanaActual() { return self }
 	
-		
+	method cantidadDePersonasConSintomas() { return personas.count({ p=> p.presentaSintomas() }) }
 }
